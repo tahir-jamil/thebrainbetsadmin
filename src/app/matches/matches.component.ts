@@ -2,24 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { AllCommunityModules, GridOptions } from '@ag-grid-community/all-modules';
 import * as XLSX from 'ts-xlsx';
 
-
 @Component({
-  selector: 'app-table-list',
-  templateUrl: './table-list.component.html',
-  styleUrls: ['./table-list.component.css']
+  selector: 'app-matches',
+  templateUrl: './matches.component.html',
+  styleUrls: ['./matches.component.css']
 })
-export class TableListComponent implements OnInit {
+export class MatchesComponent implements OnInit {
 
   gridOptions: any = {};
   studentList = {};
 
 
 
-  rowData: any = [
-    { make: 'Toyota', model: 'Celica', price: 35000 },
-    { make: 'Ford', model: 'Mondeo', price: 32000 },
-    { make: 'Porsche', model: 'Boxter', price: 72000 }
-  ];
+  rowData: any = [];
   modules = AllCommunityModules;
 
 
@@ -33,6 +28,7 @@ export class TableListComponent implements OnInit {
       },
       defaultColDef: {
         resizable: true,
+        width: 100
       },
       columnDefs: this.createColumnDefs(),
       rowDefs: this.studentList,
@@ -42,7 +38,7 @@ export class TableListComponent implements OnInit {
   private createColumnDefs() {
     return [
       { field: 'Id', width: 40 },
-      { field: 'Match', },
+      { field: 'Match', width: 200 },
       { field: 'Datetime' },
       { field: 'Sport',  },
       { field: 'Champion' },
@@ -75,12 +71,13 @@ export class TableListComponent implements OnInit {
   ngOnInit() {
   }
 
-  onGridReady = params => {
+  onGridReady = (params) => {
     // Following line to make the currently visible columns fit the screen
-    params.api.autoSizeColumns();
+    // params.api.autoSizeColumns();
 
     // Following line dymanic set height to row on content
-    params.api.resetRowHeights();
+    // params.api.resetRowHeights();
+    this.onFileChange('ev');
   };
 
   onFileChange(ev) {
@@ -101,19 +98,8 @@ export class TableListComponent implements OnInit {
 
       this.rowData = dataString;
       // document.getElementById('output').innerHTML = dataString.slice(0, 300).concat("...");
-      this.setDownload(dataString);
     }
     reader.readAsBinaryString(file);
-  }
-
-
-  setDownload(data) {
-    // this.willDownload = true;
-    setTimeout(() => {
-      const el = document.querySelector('#download');
-      el.setAttribute('href', `data:text/json;charset=utf-8,${encodeURIComponent(data)}`);
-      el.setAttribute('download', 'xlsxtojson.json');
-    }, 1000)
   }
 
 }

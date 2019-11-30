@@ -8,7 +8,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'table-list',
+    redirectTo: 'matches',
     pathMatch: 'full',
   },
   {
