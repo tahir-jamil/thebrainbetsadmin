@@ -13,18 +13,7 @@ export class TableListComponent implements OnInit {
   gridOptions: any = {};
   studentList = {};
 
-  columnDefs = [
-    { field: 'age' },
-    { field: 'athlete' },
-    { field: 'bronze' },
-    { field: 'country' },
-    { field: 'date' },
-    { field: 'gold' },
-    { field: 'silver' },
-    { field: 'sport' },
-    { field: 'total' },
-    { field: 'year' },
-  ];
+
 
   rowData: any = [
     { make: 'Toyota', model: 'Celica', price: 35000 },
@@ -42,6 +31,9 @@ export class TableListComponent implements OnInit {
       context: {
         componentParent: this
       },
+      defaultColDef: {
+        resizable: true,
+      },
       columnDefs: this.createColumnDefs(),
       rowDefs: this.studentList,
     };
@@ -49,16 +41,34 @@ export class TableListComponent implements OnInit {
 
   private createColumnDefs() {
     return [
-      {
-        headerName: "Name",
-        field: "name",
-        width: 400
-      },
-      {
-        headerName: "SSN",
-        field: "ssn",
-        width: 400,
-      }
+      { field: 'Id', width: 40 },
+      { field: 'Match', },
+      { field: 'Datetime' },
+      { field: 'Sport',  },
+      { field: 'Champion' },
+      { field: '1' },
+      { field: 'X' },
+      { field: '2' },
+      { field: 'GG' },
+      { field: 'NG' },
+      { field: 'U05' },
+      { field: 'O05' },
+      { field: 'U15' },
+      { field: 'O15' },
+      { field: 'U25' },
+      { field: 'O25' },
+      { field: '1X' },
+      { field: 'X2' },
+      { field: '12' },
+      { field: '1HT' },
+      { field: 'XHT' },
+      { field: '2HT' },
+      { field: 'U05HT' },
+      { field: 'O05HT' },
+      { field: 'U15HT' },
+      { field: 'STATUS' },
+      { field: 'RESULT' },
+      { field: 'O15HT' },
     ];
   }
 
@@ -67,7 +77,7 @@ export class TableListComponent implements OnInit {
 
   onGridReady = params => {
     // Following line to make the currently visible columns fit the screen
-    params.api.sizeColumnsToFit();
+    params.api.autoSizeColumns();
 
     // Following line dymanic set height to row on content
     params.api.resetRowHeights();
@@ -86,7 +96,7 @@ export class TableListComponent implements OnInit {
         initial[name] = XLSX.utils.sheet_to_json(sheet);
         return initial;
       }, {});
-      const dataString = jsonData.Sheet1;
+      const dataString = jsonData[Object.keys(jsonData)[0]];
       this.gridOptions.api.setRowData(dataString);
 
       this.rowData = dataString;
@@ -100,9 +110,9 @@ export class TableListComponent implements OnInit {
   setDownload(data) {
     // this.willDownload = true;
     setTimeout(() => {
-      const el = document.querySelector("#download");
-      el.setAttribute("href", `data:text/json;charset=utf-8,${encodeURIComponent(data)}`);
-      el.setAttribute("download", 'xlsxtojson.json');
+      const el = document.querySelector('#download');
+      el.setAttribute('href', `data:text/json;charset=utf-8,${encodeURIComponent(data)}`);
+      el.setAttribute('download', 'xlsxtojson.json');
     }, 1000)
   }
 
