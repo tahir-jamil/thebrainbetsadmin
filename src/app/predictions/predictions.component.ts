@@ -3,6 +3,7 @@ import { AllCommunityModules, GridOptions } from '@ag-grid-community/all-modules
 import * as XLSX from 'ts-xlsx';
 import { HttpService } from 'app/services/http.service';
 import { DropdownCellRendererComponent } from './dropdown-cell-renderer/dropdown-cell-renderer.component';
+import { DataService } from 'app/services/data.service';
 function CountryCellRenderer(params) {
   return params.value.name;
 }
@@ -25,7 +26,7 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
   domLayout = 'autoHeight';
 
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private dataService: DataService) {
     this.gridOptions = <GridOptions><unknown>{
       context: {
         componentParent: this
@@ -111,7 +112,12 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.fetchPredictions();
+    let data = this.dataService.getPredictionsData();
+    if (data && data.length !== 0) {
+      this.rowData = this.dataService.getPredictionsData()
+    } else {
+      this.fetchPredictions();
+    }
   }
 
 
@@ -125,6 +131,7 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
     this.httpService.getData()
       .subscribe((data) => {
         this.rowData = data;
+        this.dataService.setPredictionsData(data);
         console.log(this.rowData);
         this.callRefreshAfterMillis();
       }, (error) => {

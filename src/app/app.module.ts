@@ -16,6 +16,7 @@ import {
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { HttpService } from './services/http.service';
+import { DataService } from './services/data.service';
 
 @NgModule({
   imports: [
@@ -35,7 +36,7 @@ import { HttpService } from './services/http.service';
     AppComponent,
     AdminLayoutComponent,
   ],
-  providers: [HttpService],
+  providers: [HttpService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
