@@ -2,7 +2,6 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AllCommunityModules, GridOptions } from '@ag-grid-community/all-modules';
 import * as XLSX from 'ts-xlsx';
 import { HttpService } from 'app/services/http.service';
-import { DropdownCellRendererComponent } from './dropdown-cell-renderer/dropdown-cell-renderer.component';
 import { DataService } from 'app/services/data.service';
 function CountryCellRenderer(params) {
   return params.value.name;
@@ -16,8 +15,6 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
 
   gridOptions: any = {};
   private gridApi;
-
-
 
   rowData: any = []
   modules = AllCommunityModules;
@@ -68,42 +65,42 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
         headerName: 'ou05', field: 'ou05', editable: true,
         cellEditor: 'agSelectCellEditor',
         cellEditorParams: {
-          values: ['Porsche', 'Toyota', 'Ford', 'AAA', 'BBB', 'CCC']
+          values: ['o 0.5', 'u 0.5', ]
         }
       },
       {
         headerName: 'ou15', field: 'ou15', editable: true,
         cellEditor: 'agSelectCellEditor',
         cellEditorParams: {
-          values: ['Porsche', 'Toyota', 'Ford', 'AAA', 'BBB', 'CCC']
+          values: ['o 1.5', 'u 1.5', ]
         }
       },
       {
         headerName: 'ou25', field: 'ou25', editable: true,
         cellEditor: 'agSelectCellEditor',
         cellEditorParams: {
-          values: ['Porsche', 'Toyota', 'Ford', 'AAA', 'BBB', 'CCC']
+          values: ['o 2.5', 'u 2.5', ]
         }
       },
       {
         headerName: 'ou05ht', field: 'ou05ht', editable: true,
         cellEditor: 'agSelectCellEditor',
         cellEditorParams: {
-          values: ['Porsche', 'Toyota', 'Ford', 'AAA', 'BBB', 'CCC']
+          values: ['o 0.5', 'u 0.5', ]
         }
       },
       {
         headerName: 'ou15ht', field: 'ou15ht', editable: true,
         cellEditor: 'agSelectCellEditor',
         cellEditorParams: {
-          values: ['Porsche', 'Toyota', 'Ford', 'AAA', 'BBB', 'CCC']
+          values: ['o 1.5', 'u 1.5', ]
         }
       },
       {
         headerName: 'ggng', field: 'ggng', editable: true,
         cellEditor: 'agSelectCellEditor',
         cellEditorParams: {
-          values: ['Porsche', 'Toyota', 'Ford', 'AAA', 'BBB', 'CCC']
+          values: ['Porsche', 'Toyota']
         }
       },
       { headerName: 'double_change', field: 'double_change' },
@@ -125,10 +122,8 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
 
   }
 
-
-
   fetchPredictions() {
-    this.httpService.getData()
+    this.httpService.getPredictions()
       .subscribe((data) => {
         this.rowData = data;
         this.dataService.setPredictionsData(data);

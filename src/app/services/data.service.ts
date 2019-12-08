@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
 
-  predictionsData;
+  private predictionsData;
+  private matchesData;
 
   constructor() { }
 
@@ -15,5 +16,13 @@ export class DataService {
 
   getPredictionsData() {
     return this.predictionsData;
+  }
+
+  setmatchesData(data) {
+    this.matchesData = data;
+  }
+
+  getmatchesData() {
+    return this.matchesData;
   }
 }

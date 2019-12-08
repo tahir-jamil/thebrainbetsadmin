@@ -7,10 +7,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class HttpService {
 
   private finaldata = [];
-  private apiurl = 'http://127.0.0.1/task/api.php/?';
+  private apiurl = 'http://localhost/project_api/task/api.php?';
   constructor(private http: HttpClient) { }
 
-  getData() {
-    return this.http.get(this.apiurl+ "predictions");
+  getPredictions() {
+    return this.http.get(this.apiurl+ "get_predictions");
+  }
+  getMatches() {
+    return this.http.get(this.apiurl+ "get_matches");
   }
 }
