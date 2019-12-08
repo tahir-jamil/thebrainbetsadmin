@@ -188,7 +188,7 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
 
 
   onCellValueChanged(params) {
-    const colId = params.column.getId();
+    const colId = params.data.id;
     if (colId === "activite") {
     }
   }
