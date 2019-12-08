@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SportsComponent } from './sports.component';
-import { SportsRoutingModule } from './sports.routing';
+import { NationsComponent } from './nations.component';
+import { NationsRoutingModule } from './nations.routing';
 import { AgGridModule } from '@ag-grid-community/angular';
 
 @NgModule({
   imports: [
     CommonModule,
-    SportsRoutingModule,
+    NationsRoutingModule,
     AgGridModule.withComponents([])
 
   ],
-  declarations: [SportsComponent]
+  declarations: [NationsComponent]
 })
-export class SportsModule { }
+export class NationsModule { }
