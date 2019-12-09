@@ -14,13 +14,12 @@ export class AddNewMatchesComponent implements OnInit {
   gridOptions: any = {};
   studentList = {};
 
-
-
   rowData: any = [];
   modules = AllCommunityModules;
 
 
   domLayout = 'autoHeight';
+
 
 
   constructor(private httpService: HttpService, private dataService: DataService) {
@@ -39,18 +38,15 @@ export class AddNewMatchesComponent implements OnInit {
 
 
   ngOnInit() {
-    this.fetchMatches();
   }
 
-  fetchMatches() {
-    this.httpService.getMatches()
-      .subscribe((data) => {
-        this.rowData = data;
-        this.dataService.setmatchesData(data);
-        console.log(this.rowData);
-      }, (error) => {
-        console.log(error);
-      });
+
+  get rowDataLength() {
+    if (this.rowData.length !== 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   private createColumnDefs() {
@@ -83,6 +79,8 @@ export class AddNewMatchesComponent implements OnInit {
       { field: 'O15HT' },
     ]
 
+
+
   }
 
 
@@ -114,6 +112,25 @@ export class AddNewMatchesComponent implements OnInit {
       this.rowData = dataString;
     }
     reader.readAsBinaryString(file);
+  }
+
+  renameKeys(obj, newKeys) {
+    const keyValues = Object.keys(obj).map(key => {
+      const newKey = newKeys[key] || key;
+      return { [newKey]: obj[key] };
+    });
+    return Object.assign({}, ...keyValues);
+  }
+
+  publishMatches() {
+    this.rowData.forEach(element => {
+      this.httpService.postMatches(element)
+        .subscribe((data) => {
+          console.log(this.rowData);
+        }, (error) => {
+          console.log(error);
+        });
+    });
   }
 
 }

@@ -1,6 +1,12 @@
-<app-navbar (onImportChange)="onFileChange($event)"></app-navbar>
-<div class="main-content">
+
+<div>
   <div class="container-fluid">
+    <div class="form-group">
+        <label class="btn btn-primary" for="file">Import New Matches</label>
+        <input type="file" id="file" (change)="onFileChange($event)">
+        <label class="btn btn-primary" style="margin-left: 10px;" (click)="publishMatches()" >Publish Matches</label>
+        <!-- *ngIf="rowDataLength" -->
+    </div>
     <div class="row">
       <div class="col-md-12">
         <div class="table-responsive">
