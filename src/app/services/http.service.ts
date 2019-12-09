@@ -11,9 +11,22 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   getPredictions() {
-    return this.http.get(this.apiurl+ "get_predictions");
+    return this.http.get(this.apiurl + 'get_predictions');
   }
+
   getMatches() {
-    return this.http.get(this.apiurl+ "get_matches");
+    return this.http.get(this.apiurl + 'get_matches');
+  }
+
+  getChampions() {
+    return this.http.get(this.apiurl + 'get_champion');
+  }
+
+  getSports() {
+    return this.http.get(this.apiurl + 'get_sports');
+  }
+
+  getNations() {
+    return this.http.get(this.apiurl + 'get_nation');
   }
 }

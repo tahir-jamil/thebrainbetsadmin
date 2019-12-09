@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
     <div class="container-fluid">
         <div class="navbar-wrapper">
-          <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a>
+            <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a>
         </div>
         <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
             <span class="sr-only">Toggle navigation</span>
@@ -10,7 +10,16 @@
             <span class="navbar-toggler-icon icon-bar"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form class="navbar-form">
+            <!-- <div class="form-group">
+                
+                <input type="file" id="file" (change)="onImportTap($event)">
+            </div> -->
+            <div class="form-group"  *ngIf="getTitle() === 'Matches'">
+                <label class="btn btn-primary"  for="file" >Import New Matches</label>
+                <input type="file" id="file" (change)="onImportTap($event)">
+            </div>
+
+            <!-- <form class="navbar-form">
                 <div class="input-group no-border">
                     <input type="text" value="" class="form-control" placeholder="Search...">
                     <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -18,8 +27,8 @@
                         <div class="ripple-container"></div>
                     </button>
                 </div>
-            </form>
-            <ul class="navbar-nav">
+            </form> -->
+            <!-- <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="javascript:void(0)">
                         <i class="material-icons">dashboard</i>
@@ -52,7 +61,7 @@
                         </p>
                     </a>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </div>
 </nav>
