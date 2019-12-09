@@ -189,8 +189,11 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
 
   onCellValueChanged(params) {
     const colId = params.data.id;
-    if (colId === "activite") {
-    }
+    this.httpService.updatePredictions().subscribe((data) => {
+      console.log(data)
+    }, (error) => {
+      console.log(error);
+    });
   }
 
 

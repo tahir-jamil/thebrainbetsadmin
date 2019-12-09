@@ -4,6 +4,7 @@ import { MatchesComponent } from './matches.component';
 import { MatchesRoutingModule } from './matches.routing';
 import { AgGridModule } from '@ag-grid-community/angular';
 import { ComponentsModule } from 'app/components/components.module';
+import { AddNewMatchesComponent } from './addNewMatches/addNewMatches.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import { ComponentsModule } from 'app/components/components.module';
     AgGridModule.withComponents([]),
     ComponentsModule
   ],
-  declarations: [MatchesComponent]
+  declarations: [MatchesComponent, AddNewMatchesComponent]
 })
 export class MatchesModule { }
