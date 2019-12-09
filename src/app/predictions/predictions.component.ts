@@ -3,6 +3,8 @@ import { AllCommunityModules, GridOptions } from '@ag-grid-community/all-modules
 import * as XLSX from 'ts-xlsx';
 import { HttpService } from 'app/services/http.service';
 import { DataService } from 'app/services/data.service';
+import { MatDialog } from '@angular/material';
+import { ModelAddPridictionComponent } from 'app/matches/modelAddPridiction/modelAddPridiction.component';
 function CountryCellRenderer(params) {
   return params.value.name;
 }
@@ -23,7 +25,7 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
   domLayout = 'autoHeight';
 
 
-  constructor(private httpService: HttpService, private dataService: DataService) {
+  constructor(private httpService: HttpService, private dataService: DataService, public dialog: MatDialog) {
     this.gridOptions = <GridOptions><unknown>{
       context: {
         componentParent: this
@@ -49,59 +51,59 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
         headerName: '1x2',
         field: '1x2',
         editable: true,
-        cellEditor: 'agSelectCellEditor',
-        cellEditorParams: {
-          values: ['1', 'x', '2']
-        }
+        // cellEditor: 'agSelectCellEditor',
+        // cellEditorParams: {
+        //   values: ['1', 'x', '2']
+        // }
       },
       {
         headerName: '1x2ht', field: '1x2ht', editable: true,
-        cellEditor: 'agSelectCellEditor',
-        cellEditorParams: {
-          values: ['1', 'x', '2']
-        }
+        // cellEditor: 'agSelectCellEditor',
+        // cellEditorParams: {
+        //   values: ['1', 'x', '2']
+        // }
       },
       {
         headerName: 'ou05', field: 'ou05', editable: true,
-        cellEditor: 'agSelectCellEditor',
-        cellEditorParams: {
-          values: ['o 0.5', 'u 0.5', ]
-        }
+        // cellEditor: 'agSelectCellEditor',
+        // cellEditorParams: {
+        //   values: ['o 0.5', 'u 0.5', ]
+        // }
       },
       {
         headerName: 'ou15', field: 'ou15', editable: true,
-        cellEditor: 'agSelectCellEditor',
-        cellEditorParams: {
-          values: ['o 1.5', 'u 1.5', ]
-        }
+        // cellEditor: 'agSelectCellEditor',
+        // cellEditorParams: {
+        //   values: ['o 1.5', 'u 1.5', ]
+        // }
       },
       {
         headerName: 'ou25', field: 'ou25', editable: true,
-        cellEditor: 'agSelectCellEditor',
-        cellEditorParams: {
-          values: ['o 2.5', 'u 2.5', ]
-        }
+        // cellEditor: 'agSelectCellEditor',
+        // cellEditorParams: {
+        //   values: ['o 2.5', 'u 2.5', ]
+        // }
       },
       {
         headerName: 'ou05ht', field: 'ou05ht', editable: true,
-        cellEditor: 'agSelectCellEditor',
-        cellEditorParams: {
-          values: ['o 0.5', 'u 0.5', ]
-        }
+        // cellEditor: 'agSelectCellEditor',
+        // cellEditorParams: {
+        //   values: ['o 0.5', 'u 0.5', ]
+        // }
       },
       {
         headerName: 'ou15ht', field: 'ou15ht', editable: true,
-        cellEditor: 'agSelectCellEditor',
-        cellEditorParams: {
-          values: ['o 1.5', 'u 1.5', ]
-        }
+        // cellEditor: 'agSelectCellEditor',
+        // cellEditorParams: {
+        //   values: ['o 1.5', 'u 1.5', ]
+        // }
       },
       {
         headerName: 'ggng', field: 'ggng', editable: true,
-        cellEditor: 'agSelectCellEditor',
-        cellEditorParams: {
-          values: ['Porsche', 'Toyota']
-        }
+        // cellEditor: 'agSelectCellEditor',
+        // cellEditorParams: {
+        //   values: ['Porsche', 'Toyota']
+        // }
       },
       { headerName: 'double_change', field: 'double_change' },
       { headerName: 'status_id', field: 'status_id' },
@@ -144,29 +146,6 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
     this.callRefreshAfterMillis();
   };
 
-  onFileChange(ev) {
-    let workBook = null;
-    let jsonData = null;
-    const reader = new FileReader();
-    const file = ev.target.files[0];
-    reader.onload = (event) => {
-      const data = reader.result;
-      workBook = XLSX.read(data, { type: 'binary' });
-      jsonData = workBook.SheetNames.reduce((initial, name) => {
-        const sheet = workBook.Sheets[name];
-        initial[name] = XLSX.utils.sheet_to_json(sheet);
-        return initial;
-      }, {});
-      const dataString = jsonData[Object.keys(jsonData)[0]];
-      this.gridOptions.api.setRowData(dataString);
-
-      this.rowData = dataString;
-      // document.getElementById('output').innerHTML = dataString.slice(0, 300).concat("...");
-      this.setDownload(dataString);
-    }
-    reader.readAsBinaryString(file);
-  }
-
 
   setDownload(data) {
     // this.willDownload = true;
@@ -192,6 +171,24 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
       console.log(data)
     }, (error) => {
       console.log(error);
+    });
+  }
+
+
+  onSelectionChanged() {
+    const selectedRows = this.gridApi.getSelectedRows();
+    this.openDialog(selectedRows[0])
+  }
+
+  openDialog(data): void {
+    const dialogRef = this.dialog.open(ModelAddPridictionComponent, {
+      width: 'auto',
+      height: '500px',
+      data: {data: data}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
     });
   }
 

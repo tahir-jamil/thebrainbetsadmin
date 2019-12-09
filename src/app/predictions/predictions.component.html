@@ -16,6 +16,8 @@
                              [frameworkComponents]="frameworkComponents"
                              [domLayout]="domLayout" 
                              editType="fullRow"
+                             rowSelection = "single"
+                            (selectionChanged)="onSelectionChanged($event)"
                              (cellValueChanged)="onCellValueChanged($event)"
                              (gridReady)="onGridReady($event)"
                              >

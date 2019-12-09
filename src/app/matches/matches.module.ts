@@ -26,6 +26,7 @@ import { FormsModule } from '@angular/forms';
 
   ],
   declarations: [MatchesComponent, AddNewMatchesComponent, ModelAddPridictionComponent],
-  entryComponents: [ModelAddPridictionComponent]
+  entryComponents: [ModelAddPridictionComponent],
+  exports: [ModelAddPridictionComponent]
 })
 export class MatchesModule { }

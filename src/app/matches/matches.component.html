@@ -6,8 +6,8 @@
         <div class="table-responsive">
           <ag-grid-angular class="ag-theme-balham" [rowData]="rowData" [gridOptions]="gridOptions"
             [columnDefs]="columnDefs" 
-            rowSelection = "single"
             [modules]="modules" [domLayout]="domLayout" 
+            rowSelection = "single"
             (selectionChanged)="onSelectionChanged($event)"
             
             (gridReady)="onGridReady($event)">

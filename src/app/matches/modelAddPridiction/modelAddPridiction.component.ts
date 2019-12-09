@@ -9,6 +9,20 @@ import { HttpService } from 'app/services/http.service';
 })
 export class ModelAddPridictionComponent implements OnInit {
 
+  options = {
+    'value_1x2': '',
+    'value_1x2ht': '',
+    'value_ou05': '',
+    'value_ou15': '',
+    'value_ou05ht': '',
+    'value_ou15ht': '',
+    'value_ou25': '',
+    'doubleChange': '',
+    'value_ggng': '',
+    id: this.data.data.id,
+    Match: this.data.data.Match
+  }
+
   constructor(
     private httpService: HttpService,
     public dialogRef: MatDialogRef<ModelAddPridictionComponent>,
@@ -22,7 +36,7 @@ export class ModelAddPridictionComponent implements OnInit {
   }
 
   update() {
-    this.httpService.postPredictions(this.data.data)
+    this.httpService.postPredictions(this.options)
       .subscribe((data) => {
         this.onNoClick();
       }, (error) => {

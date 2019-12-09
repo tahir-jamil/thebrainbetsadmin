@@ -5,6 +5,7 @@ import { PredictionsRoutingModule } from './predictions.routing';
 import { AgGridModule } from '@ag-grid-community/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentsModule } from 'app/components/components.module';
+import { MatchesModule } from 'app/matches/matches.module';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { ComponentsModule } from 'app/components/components.module';
     PredictionsRoutingModule,
     AgGridModule.withComponents([]),
     HttpClientModule,
-    ComponentsModule
+    ComponentsModule,
+    MatchesModule
   ],
   declarations: [PredictionsComponent, ]
 })

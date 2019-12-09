@@ -10,11 +10,8 @@
             <span class="navbar-toggler-icon icon-bar"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <!-- <div class="form-group">
-                
-                <input type="file" id="file" (change)="onImportTap($event)">
-            </div> -->
-            <button class="btn btn-primary"  [routerLink]="['addNewMatches']">Add new matches</button>
+
+            <button class="btn btn-primary" *ngIf="getTitle() == 'Matches'" [routerLink]="['addNewMatches']">Add new matches</button>
 
             <!-- <form class="navbar-form">
                 <div class="input-group no-border">
