@@ -1,0 +1,61 @@
+<div>
+  <h1 mat-dialog-title>{{data.data.Match}}</h1>
+  <div class="row" style="padding:10px">
+    <div mat-dialog-content class="col-md-4">
+      <mat-form-field>
+        <mat-select placeholder="1x2">
+          <mat-option value="option">1</mat-option>
+          <mat-option value="option">x</mat-option>
+          <mat-option value="option">2</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-content class="col-md-4" style="margin-left: 2vw;margin-right: 2vw;">
+      <mat-form-field>
+        <mat-select placeholder="1x2ht">
+          <mat-option value="option">1</mat-option>
+          <mat-option value="option">x</mat-option>
+          <mat-option value="option">2</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-content class="col-md-4">
+      <mat-form-field>
+        <mat-select placeholder="ou05">
+          <mat-option value="option">o 0.5</mat-option>
+          <mat-option value="option">u 0.5</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row" style="padding:10px">
+    <div mat-dialog-content class="col-md-4">
+      <mat-form-field>
+        <mat-select placeholder="ou15">
+          <mat-option value="option">o 1.5</mat-option>
+          <mat-option value="option">u 1.5</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-content class="col-md-4" style="margin-left: 2vw;margin-right: 2vw;">
+      <mat-form-field>
+        <mat-select placeholder="ou15ht">
+          <mat-option value="option">o 1.5</mat-option>
+          <mat-option value="option">u 1.5</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-content class="col-md-4">
+      <mat-form-field>
+        <mat-select placeholder="ggng">
+          <mat-option value="option">o 1.5</mat-option>
+          <mat-option value="option">u 1.5</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button class="btn btn-primary" style="margin-right: 2vw;" (click)="update()">Save</button>
+    <button class="btn btn-muted" (click)="close()">Close</button>
+  </div>
+</div>

@@ -4,8 +4,8 @@
     <div class="form-group">
         <label class="btn btn-primary" for="file">Import New Matches</label>
         <input type="file" id="file" (change)="onFileChange($event)">
-        <label class="btn btn-primary" style="margin-left: 10px;" (click)="publishMatches()" >Publish Matches</label>
-        <!-- *ngIf="rowDataLength" -->
+        <label class="btn btn-primary" *ngIf="rowDataLength" style="margin-left: 10px;" (click)="publishMatches()" >Publish Matches</label>
+        <!--  -->
     </div>
     <div class="row">
       <div class="col-md-12">

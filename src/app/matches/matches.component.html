@@ -5,7 +5,12 @@
       <div class="col-md-12">
         <div class="table-responsive">
           <ag-grid-angular class="ag-theme-balham" [rowData]="rowData" [gridOptions]="gridOptions"
-            [columnDefs]="columnDefs" [modules]="modules" [domLayout]="domLayout" (gridReady)="onGridReady($event)">
+            [columnDefs]="columnDefs" 
+            rowSelection = "single"
+            [modules]="modules" [domLayout]="domLayout" 
+            (selectionChanged)="onSelectionChanged($event)"
+            
+            (gridReady)="onGridReady($event)">
           </ag-grid-angular>
         </div>
       </div>

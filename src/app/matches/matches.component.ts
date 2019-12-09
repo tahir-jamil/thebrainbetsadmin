@@ -3,6 +3,8 @@ import { AllCommunityModules, GridOptions } from '@ag-grid-community/all-modules
 import * as XLSX from 'xlsx';
 import { HttpService } from 'app/services/http.service';
 import { DataService } from 'app/services/data.service';
+import { MatDialog } from '@angular/material';
+import { ModelAddPridictionComponent } from './modelAddPridiction/modelAddPridiction.component';
 
 @Component({
   selector: 'app-matches',
@@ -13,17 +15,12 @@ export class MatchesComponent implements OnInit {
 
   gridOptions: any = {};
   studentList = {};
-
-
-
+  gridApi;
   rowData: any = [];
   modules = AllCommunityModules;
-
-
   domLayout = 'autoHeight';
 
-
-  constructor(private httpService: HttpService, private dataService: DataService) {
+  constructor(private httpService: HttpService, private dataService: DataService, public dialog: MatDialog) {
     this.gridOptions = <GridOptions>{
       context: {
         componentParent: this
@@ -56,68 +53,40 @@ export class MatchesComponent implements OnInit {
 
   private createColumnDefs() {
     return [
-      { field: '1' },
-      { field: '1ht' },
-      { field: '1x' },
-      { field: '2' },
-      { field: '2ht' },
-      { field: '12' },
-      { field: 'champion' },
-      { field: 'datetime' },
-      { field: 'game' },
-      { field: 'gg' },
       { field: 'id' },
-      { field: 'ng' },
-      { field: 'o05' },
-      { field: 'o05ht' },
-      { field: 'o15' },
-      { field: 'o15ht' },
-      { field: 'o25' },
-      { field: 'result' },
-      { field: 'sport_id' },
-      { field: 'u05' },
-      { field: 'u05ht' },
-      { field: 'u15' },
-      { field: 'u15ht' },
-      { field: 'u25' },
-      { field: 'x' },
-      { field: 'x2' },
-      { field: 'xht' },
+      { field: 'Match' },
+      { field: 'Datetime' },
+      { field: 'Sport' },
+      { field: 'Champion' },
+      { field: '1' },
+      { field: 'X' },
+      { field: '2' },
+      { field: 'GG' },
+      { field: 'NG' },
+      { field: 'U05' },
+      { field: 'O05' },
+      { field: 'U15' },
+      { field: 'O15' },
+      { field: 'U25' },
+      { field: 'O25' },
+      { field: '1X' },
+      { field: 'X2' },
+      { field: '12' },
+      { field: '1HT' },
+      { field: 'XHT' },
+      { field: '2HT' },
+      { field: 'U05HT' },
+      { field: 'O05HT' },
+      { field: 'U15HT' },
+      { field: 'O15HT' },
     ]
-    // [
-    //   { field: 'Id', width: 40 },
-    //   { field: 'Match', width: 200 },
-    //   { field: 'Datetime' },
-    //   { field: 'Sport', },
-    //   { field: 'Champion' },
-    //   { field: '1' },
-    //   { field: 'X' },
-    //   { field: '2' },
-    //   { field: 'GG' },
-    //   { field: 'NG' },
-    //   { field: 'U05' },
-    //   { field: 'O05' },
-    //   { field: 'U15' },
-    //   { field: 'O15' },
-    //   { field: 'U25' },
-    //   { field: 'O25' },
-    //   { field: '1X' },
-    //   { field: 'X2' },
-    //   { field: '12' },
-    //   { field: '1HT' },
-    //   { field: 'XHT' },
-    //   { field: '2HT' },
-    //   { field: 'U05HT' },
-    //   { field: 'O05HT' },
-    //   { field: 'U15HT' },
-    //   { field: 'STATUS' },
-    //   { field: 'RESULT' },
-    //   { field: 'O15HT' },
-    // ];
+
   }
 
 
   onGridReady = (params) => {
+    this.gridApi = params.api;
+
     // Following line to make the currently visible columns fit the screen
     // params.api.autoSizeColumns();
 
@@ -125,6 +94,11 @@ export class MatchesComponent implements OnInit {
     // params.api.resetRowHeights();
     this.onFileChange('ev');
   };
+
+  onSelectionChanged() {
+    const selectedRows = this.gridApi.getSelectedRows();
+    this.openDialog(selectedRows[0])
+  }
 
   onFileChange(ev) {
     let workBook = null;
@@ -143,7 +117,6 @@ export class MatchesComponent implements OnInit {
       this.gridOptions.api.setRowData(dataString);
 
       this.rowData = dataString;
-      // document.getElementById('output').innerHTML = dataString.slice(0, 300).concat("...");
     }
     reader.readAsBinaryString(file);
   }
@@ -156,6 +129,20 @@ export class MatchesComponent implements OnInit {
       }
     })
   }
+
+
+  openDialog(data): void {
+    const dialogRef = this.dialog.open(ModelAddPridictionComponent, {
+      width: 'auto',
+      height: '500px',
+      data: {data: data}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
 
 
 }
