@@ -1,13 +1,17 @@
 <div class="container-fluid" style="margin-top: 55px;">
-  <div class="card" >
+  <div class="card">
     <div class="card-header card-header-danger">
       <h4 class="card-title">Generate Bets</h4>
     </div>
     <div class="card-body">
       <div style="padding:10px" class="row">
         <div mat-dialog-content class="col-md-4">
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Champions" [(ngModel)]="generateBetsFilters.champions">
+          <mat-form-field>
+            <mat-select placeholder="Champions" [(ngModel)]="generateBetsFilters.champions">
+              <ng-container *ngFor="let item of champions">
+                <mat-option value="{{item.name}}">{{item.name}}</mat-option>
+              </ng-container>
+            </mat-select>
           </mat-form-field>
         </div>
         <div mat-dialog-content class="col-md-4">

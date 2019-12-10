@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { GridOptions } from '@ag-grid-community/core';
+import { HttpService } from 'app/services/http.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -7,7 +8,7 @@ import { GridOptions } from '@ag-grid-community/core';
   templateUrl: './generateBets.component.html',
   styleUrls: ['./generateBets.component.scss']
 })
-export class GenerateBetsComponent implements OnInit {
+export class GenerateBetsComponent implements OnInit, AfterViewInit {
 
   generateBetsFilters = {
     'champions': '',
@@ -20,8 +21,9 @@ export class GenerateBetsComponent implements OnInit {
 
   generateBets = [];
   generateBetsOptions;
+  champions = [];
 
-  constructor() {
+  constructor(private httpService: HttpService) {
     this.generateBetsOptions = <GridOptions>{
       context: {
         componentParent: this
@@ -44,6 +46,19 @@ export class GenerateBetsComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
+  ngAfterViewInit(): void {
+    this.fetchChampions();
+  }
+
+  fetchChampions() {
+    this.httpService.getChampions()
+      .subscribe((data) => {
+        this.champions = data;
+      }, (error) => {
+        console.log(error);
+      });
+  }
 }
