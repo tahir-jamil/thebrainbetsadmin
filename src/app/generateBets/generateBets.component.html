@@ -1,0 +1,53 @@
+<div class="container-fluid" style="margin-top: 55px;">
+  <div class="card" >
+    <div class="card-header card-header-danger">
+      <h4 class="card-title">Generate Bets</h4>
+    </div>
+    <div class="card-body">
+      <div style="padding:10px" class="row">
+        <div mat-dialog-content class="col-md-4">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Champions" [(ngModel)]="generateBetsFilters.champions">
+          </mat-form-field>
+        </div>
+        <div mat-dialog-content class="col-md-4">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Min quote" [(ngModel)]="generateBetsFilters.minQuote">
+          </mat-form-field>
+        </div>
+        <div mat-dialog-content class="col-md-4">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Max quote" [(ngModel)]="generateBetsFilters.maxQuote">
+          </mat-form-field>
+        </div>
+        <div mat-dialog-content class="col-md-4">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Number of matches" [(ngModel)]="generateBetsFilters.numberOfMatches">
+          </mat-form-field>
+        </div>
+        <div mat-dialog-content class="col-md-4">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="stack" [(ngModel)]="generateBetsFilters.stack">
+          </mat-form-field>
+        </div>
+        <div mat-dialog-content class="col-md-4">
+          <mat-form-field>
+            <mat-select placeholder="Kind of prediction" [(ngModel)]="generateBetsFilters.kindOfPrediction">
+              <mat-option value="true">Enable</mat-option>
+              <mat-option value="false">Disable</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div mat-dialog-actions>
+        <button class="btn btn-primary" (click)="createNewSport()">Generate</button>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <ag-grid-angular class="ag-theme-balham" [rowData]="generateBets" [gridOptions]="generateBetsOptions"
+        [columnDefs]="columnDefs" [modules]="modules" [domLayout]="domLayout" (gridReady)="onGridReady($event)">
+      </ag-grid-angular>
+    </div>
+  </div>
+
+</div>

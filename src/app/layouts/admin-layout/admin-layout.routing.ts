@@ -50,6 +50,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-profile', component: UserProfileComponent },
     { path: 'matches', loadChildren: '../../matches/matches.module#MatchesModule' },
     { path: 'predictions', loadChildren: '../../predictions/predictions.module#PredictionsModule' },
+    { path: 'generateBets', loadChildren: '../../generateBets/generateBets.module#GenerateBetsModule' },
+    { path: 'account', loadChildren:  '../../account/account.module#AccountModule' },
     // { path: 'typography', component: TypographyComponent },
     // { path: 'maps', component: MapsComponent },
     // { path: 'notifications', component: NotificationsComponent },

@@ -1,0 +1,157 @@
+<app-navbar></app-navbar>
+<div class="main-content">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <p style="margin-top: 1rem;">
+          Sports
+        </p>
+        <div class="table-responsive">
+          <ag-grid-angular class="ag-theme-balham" [rowData]="sports" [gridOptions]="sportsGridOptions"
+            [columnDefs]="columnDefs" [modules]="modules" [domLayout]="domLayout" (gridReady)="onGridReady($event)">
+          </ag-grid-angular>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card" style="margin-top: 55px;">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Add new Sports</h4>
+          </div>
+          <div class="card-body">
+            <div  style="padding:10px">
+              <div mat-dialog-content >
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Name" [(ngModel)]="sportsPost.name">
+                </mat-form-field>
+              </div>
+              <div mat-dialog-content >
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Sign" [(ngModel)]="sportsPost.sign">
+                </mat-form-field>
+              </div>
+              <div mat-dialog-content>
+                <mat-form-field>
+                  <mat-select placeholder="Active Status" [(ngModel)]="sportsPost.isActive">
+                    <mat-option value="true">Enable</mat-option>
+                    <mat-option value="false">Disable</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div mat-dialog-actions>
+              <button class="btn btn-primary" (click)="createNewSport()">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+          <p style="margin-top: 1rem;">
+            Nations
+          </p>
+          <div class="table-responsive">
+            <ag-grid-angular class="ag-theme-balham" [rowData]="nations" [gridOptions]="nationsGridOptions"
+              [columnDefs]="columnDefs" [modules]="modules" [domLayout]="domLayout" (gridReady)="onGridReady($event)">
+            </ag-grid-angular>
+          </div>
+        </div>
+  
+        <div class="col-md-6">
+          <div class="card" style="margin-top: 55px;">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">Add new Nations</h4>
+            </div>
+            <div class="card-body">
+              <div  style="padding:10px">
+                <div mat-dialog-content >
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Name" [(ngModel)]="nationsPost.name">
+                  </mat-form-field>
+                </div>
+                <div mat-dialog-content >
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Sign" [(ngModel)]="nationsPost.sign">
+                  </mat-form-field>
+                </div>
+                <div mat-dialog-content>
+                  <mat-form-field>
+                    <mat-select placeholder="Active Status" [(ngModel)]="nationsPost.isActive">
+                      <mat-option value="true">Enable</mat-option>
+                      <mat-option value="false">Disable</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+  
+              <div mat-dialog-actions>
+                <button class="btn btn-primary" (click)="createNations()">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <div class="row">
+      <div class="col-md-6">
+        <p style="margin-top: 1rem;">
+          Champions
+        </p>
+        <div class="table-responsive">
+          <ag-grid-angular class="ag-theme-balham" [rowData]="champions" [gridOptions]="championsGridOptions"
+            [columnDefs]="columnDefs" [modules]="modules" [domLayout]="domLayout" (gridReady)="onGridReady($event)">
+          </ag-grid-angular>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card" style="margin-top: 55px;">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Add new Champions</h4>
+          </div>
+          <div class="card-body">
+            <div  style="padding:10px">
+              <div mat-dialog-content >
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Name" [(ngModel)]="championsPost.name">
+                </mat-form-field>
+              </div>
+              <div mat-dialog-content >
+                <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Sign" [(ngModel)]="championsPost.sign">
+                </mat-form-field>
+              </div>
+              <div mat-dialog-content>
+                <mat-form-field>
+                  <mat-select placeholder="Active Status" [(ngModel)]="championsPost.isActive">
+                    <mat-option value="true">Enable</mat-option>
+                    <mat-option value="false">Disable</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div mat-dialog-content>
+                <mat-form-field>
+                  <mat-select placeholder="Nations" [(ngModel)]="championsPost.nation_id">
+                    <ng-container *ngFor="let item of nations">
+                      <mat-option value="{{item.id}}">{{item.name}}</mat-option>
+                    </ng-container>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div mat-dialog-actions>
+              <button class="btn btn-primary" (click)="createChampions()">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+
+
+  </div>
+</div>
