@@ -19,9 +19,11 @@ export class GenerateBetsComponent implements OnInit, AfterViewInit {
     'kindOfPrediction': ''
   }
 
+  predictions = ['1x2', '1x2ht', 'ou05', 'ou25', 'ou15', 'ou05ht', 'ou15ht', 'ggng', 'double_change', 'status_id']
+
   generateBets = [];
   generateBetsOptions;
-  champions = [];
+  champions;
 
   constructor(private httpService: HttpService) {
     this.generateBetsOptions = <GridOptions>{
@@ -42,6 +44,7 @@ export class GenerateBetsComponent implements OnInit, AfterViewInit {
       { field: 'name' },
       { field: 'sign' },
       { field: 'isActive' },
+
     ]
   }
 
@@ -61,4 +64,12 @@ export class GenerateBetsComponent implements OnInit, AfterViewInit {
         console.log(error);
       });
   }
+
+  onGridReady = (params) => {
+    // Following line to make the currently visible columns fit the screen
+    // params.api.autoSizeColumns();
+
+    // Following line dymanic set height to row on content
+    // params.api.resetRowHeights();
+  };
 }

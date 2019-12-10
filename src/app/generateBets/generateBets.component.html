@@ -37,8 +37,9 @@
         <div mat-dialog-content class="col-md-4">
           <mat-form-field>
             <mat-select placeholder="Kind of prediction" [(ngModel)]="generateBetsFilters.kindOfPrediction">
-              <mat-option value="true">Enable</mat-option>
-              <mat-option value="false">Disable</mat-option>
+              <ng-container *ngFor="let item of predictions">
+                <mat-option [value]="item">{{item}}</mat-option>
+              </ng-container>
             </mat-select>
           </mat-form-field>
         </div>
