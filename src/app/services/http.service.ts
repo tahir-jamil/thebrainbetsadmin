@@ -16,7 +16,7 @@ export class HttpService {
 
   postPredictions(prediction) {
     // tslint:disable-next-line: max-line-length
-    let body = `match_id=${prediction.match_id}&user_id=${prediction.user_id}&Match=${prediction.Match}&ou25=${prediction.value_ou25}&1x2=${prediction.value_1x2}&1x2ht=${prediction.value_1x2ht}&ou05=${prediction.value_ou05}&ou15=${prediction.value_ou15}&ou05ht=${prediction.value_ou05ht}&ou15ht=${prediction.value_ou15ht}&ggng=${prediction.value_ggng}&double_change=${prediction.double_change}&status_id=${prediction.status_id}`;
+    let body = `match_id=${prediction.match_id}&user_id=${prediction.user_id}&Match=${prediction.Match}&ou25=${prediction.value_ou25}&1x2=${prediction.value_1x2}&1x2ht=${prediction.value_1x2ht}&ou05=${prediction.value_ou05}&ou15=${prediction.value_ou15}&ou05ht=${prediction.value_ou05ht}&ou15ht=${prediction.value_ou15ht}&ggng=${prediction.value_ggng}&double_change=${prediction.double_change}&result=${prediction.result}&status_id=${prediction.status_id}`;
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
     });
@@ -26,7 +26,7 @@ export class HttpService {
 
   updatePredictions(prediction) {
     // tslint:disable-next-line: max-line-length
-    let body = `id=${prediction.id}&match_id=${prediction.match_id}&user_id=${prediction.user_id}&Match=${prediction.Match}&ou25=${prediction.value_ou25}&1x2=${prediction['value_1x2']}&1x2ht=${prediction['value_1x2ht']}&ou05=${prediction.value_ou05}&ou15=${prediction.value_ou15}&ou05ht=${prediction.value_ou05ht}&ou15ht=${prediction.value_ou15ht}&ggng=${prediction.value_ggng}&double_change=${prediction.double_change}&status_id=${prediction.status_id}`;
+    let body = `id=${prediction.id}&match_id=${prediction.match_id}&user_id=${prediction.user_id}&Match=${prediction.Match}&ou25=${prediction.value_ou25}&1x2=${prediction['value_1x2']}&1x2ht=${prediction['value_1x2ht']}&ou05=${prediction.value_ou05}&ou15=${prediction.value_ou15}&ou05ht=${prediction.value_ou05ht}&ou15ht=${prediction.value_ou15ht}&ggng=${prediction.value_ggng}&result=${prediction.result}&double_change=${prediction.double_change}&status_id=${prediction.status_id}`;
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
     });

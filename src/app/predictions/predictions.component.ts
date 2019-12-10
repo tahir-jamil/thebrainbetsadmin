@@ -105,6 +105,13 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
         //   values: ['Porsche', 'Toyota']
         // }
       },
+      {
+        headerName: 'result', field: 'result', editable: true,
+        // cellEditor: 'agSelectCellEditor',
+        // cellEditorParams: {
+        //   values: ['Porsche', 'Toyota']
+        // }
+      },
       { headerName: 'double_change', field: 'double_change' },
       { headerName: 'status_id', field: 'status_id' },
     ];
@@ -139,7 +146,6 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
   onGridReady = params => {
     // Following line to make the currently visible columns fit the screen
     this.gridApi = params.api;
-    params.api.autoSizeColumns();
 
     // Following line dymanic set height to row on content
     params.api.resetRowHeights();

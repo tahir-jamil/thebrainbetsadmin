@@ -21,6 +21,7 @@ export class ModelAddPridictionComponent implements OnInit {
     'value_ou25': '',
     'double_change': '',
     'value_ggng': '',
+    'result': '',
     match_id: '',
     id: '',
     status_id: '',
@@ -95,6 +96,10 @@ export class ModelAddPridictionComponent implements OnInit {
 
     if (this.predictionData['1x2ht'] !== undefined) {
       this.options.value_1x2ht = this.predictionData['1x2ht'];
+    }
+
+    if (this.predictionData['result'] !== undefined) {
+      this.options.value_1x2ht = this.predictionData['result'];
     }
 
   }

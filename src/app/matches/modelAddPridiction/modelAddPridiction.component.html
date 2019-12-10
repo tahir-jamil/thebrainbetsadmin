@@ -72,11 +72,23 @@
       </mat-form-field>
     </div>
 
-    <div mat-dialog-content class="col-md-4" style="margin-left: 2vw;margin-right: 2vw;">
+    <div mat-dialog-content class="col-md-2" style="margin-left: 1vw;">
       <mat-form-field>
         <mat-select placeholder="ggng" [(ngModel)]="options.value_ggng">
           <mat-option value="GG">GG</mat-option>
           <mat-option value="NG">NG</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-content class="col-md-2" style="margin-left: 1vw;margin-right: 1vw;">
+      <mat-form-field>
+        <mat-select placeholder="result" [(ngModel)]="options.result">
+          <mat-option value="GG">GG</mat-option>
+          <mat-option value="NG">NG</mat-option>
+          <mat-option value="1x">1X</mat-option>
+          <mat-option value="12">12</mat-option>
+          <mat-option value="X2">X2</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
