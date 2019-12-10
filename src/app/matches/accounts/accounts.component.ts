@@ -2,18 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { AllCommunityModules, GridOptions } from '@ag-grid-community/all-modules';
 import { HttpService } from 'app/services/http.service';
 import { DataService } from 'app/services/data.service';
-
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
-  styleUrls: ['./accounts.component.css']
+  styleUrls: ['./accounts.component.scss']
 })
 export class AccountsComponent implements OnInit {
 
   sportsGridOptions: any = {};
   nationsGridOptions: any = {};
   championsGridOptions: any = {};
-  studentList = {};
 
   sports: any = [];
   nations: any = [];
@@ -21,6 +19,29 @@ export class AccountsComponent implements OnInit {
 
   modules = AllCommunityModules;
 
+  someDataFormTable = {
+    'name': '',
+    'sign': '',
+    'isActive': ''
+  }
+
+  sportsPost = {
+    'name': '',
+    'sign': '',
+    'isActive': ''
+  }
+
+  championsPost = {
+    'name': '',
+    'sign': '',
+    'isActive': '',
+    'nation_id': ''
+  }
+  nationsPost = {
+    'name': '',
+    'sign': '',
+    'isActive': ''
+  }
 
   domLayout = 'autoHeight';
 
@@ -34,7 +55,6 @@ export class AccountsComponent implements OnInit {
         resizable: true,
       },
       columnDefs: this.createColumnDefs(),
-      rowDefs: this.studentList,
     };
 
     this.nationsGridOptions = <GridOptions>{
@@ -45,7 +65,6 @@ export class AccountsComponent implements OnInit {
         resizable: true,
       },
       columnDefs: this.createNationColumnDefs(),
-      rowDefs: this.studentList,
     };
 
     this.championsGridOptions = <GridOptions>{
@@ -56,16 +75,21 @@ export class AccountsComponent implements OnInit {
         resizable: true,
       },
       columnDefs: this.createChampionColumnDefs(),
-      rowDefs: this.studentList,
     };
   }
 
 
   ngOnInit() {
-    this.fetchMatches();
+    this.fetchSports()
+    this.fetchChampions()
+    this.fetchNations()
   }
 
-  fetchMatches() {
+  onChange(args) {
+    alert(args)
+  }
+
+  fetchSports() {
     this.httpService.getSports()
       .subscribe((data) => {
         this.sports = data;
@@ -73,13 +97,9 @@ export class AccountsComponent implements OnInit {
         console.log(error);
       });
 
-    this.httpService.getNations()
-      .subscribe((data) => {
-        this.nations = data;
-      }, (error) => {
-        console.log(error);
-      });
+  }
 
+  fetchChampions() {
     this.httpService.getChampions()
       .subscribe((data) => {
         this.champions = data;
@@ -88,11 +108,49 @@ export class AccountsComponent implements OnInit {
       });
   }
 
+  fetchNations() {
+
+    this.httpService.getNations()
+      .subscribe((data) => {
+        this.nations = data;
+      }, (error) => {
+        console.log(error);
+      });
+
+  }
+
+
+  createNewSport() {
+    this.httpService.postSports(this.sportsPost).subscribe((data) => {
+      console.log(data);
+      this.fetchSports()
+    }, (error) => {
+      console.log(error);
+    })
+  }
+
+  createChampions() {
+    this.httpService.postChampions(this.championsPost).subscribe((data) => {
+      this.fetchChampions()
+    }, (error) => {
+      console.log(error);
+    })
+  }
+
+  createNations() {
+    this.httpService.postNations(this.nationsPost).subscribe((data) => {
+      this.fetchNations();
+    }, (error) => {
+      console.log(error);
+    })
+  }
+
   private createColumnDefs() {
     return [
       { field: 'id' },
       { field: 'name' },
       { field: 'sign' },
+      { field: 'isActive' },
     ]
   }
 

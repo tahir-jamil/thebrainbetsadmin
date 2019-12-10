@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RequestOptions } from '@angular/http';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +27,6 @@ export class HttpService {
   updatePredictions(prediction) {
     // tslint:disable-next-line: max-line-length
     let body = `id=${prediction.id}&match_id=${prediction.match_id}&user_id=${prediction.user_id}&Match=${prediction.Match}&ou25=${prediction.value_ou25}&1x2=${prediction['value_1x2']}&1x2ht=${prediction['value_1x2ht']}&ou05=${prediction.value_ou05}&ou15=${prediction.value_ou15}&ou05ht=${prediction.value_ou05ht}&ou15ht=${prediction.value_ou15ht}&ggng=${prediction.value_ggng}&double_change=${prediction.double_change}&status_id=${prediction.status_id}`;
-
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
     });
@@ -40,7 +38,7 @@ export class HttpService {
 
 
   getChampions() {
-    return this.http.get(this.apiurl + 'get_champion');
+    return this.http.get(this.apiurl + 'get_champions');
   }
 
   getSports() {
@@ -48,40 +46,37 @@ export class HttpService {
   }
 
   getNations() {
-    return this.http.get(this.apiurl + 'get_nation');
+    return this.http.get(this.apiurl + 'get_nations');
   }
 
   postChampions(data) {
     // tslint:disable-next-line: max-line-length
-    let body = `id=${prediction.id}&$match_id=${prediction.id}&user_id=${prediction.user_id}&Match=${prediction.Match}&1x2=${prediction['1x2']}&1x2ht=${prediction['1x2ht']}&ou05=${prediction.ou05}&ou15=${prediction.ou15}&ou05ht=${prediction.ou05ht}&ou15ht=${prediction.ou15ht}&ggng=${prediction.ggng}&double_change=${prediction.double_change}&status_id=${prediction.status_id}`;
-
+    let body = `name=${data.name}&sign=${data.sign}&isActive=${data.isActive}`;
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
     });
 
-    return this.http.post(this.apiurl + 'post_champions/', body, { headers: httpHeaders });
+    return this.http.post(this.apiurl + 'post_champion', body, { headers: httpHeaders });
   }
 
   postSports(data) {
     // tslint:disable-next-line: max-line-length
-    let body = `id=${prediction.id}&$match_id=${prediction.id}&user_id=${prediction.user_id}&Match=${prediction.Match}&1x2=${prediction['1x2']}&1x2ht=${prediction['1x2ht']}&ou05=${prediction.ou05}&ou15=${prediction.ou15}&ou05ht=${prediction.ou05ht}&ou15ht=${prediction.ou15ht}&ggng=${prediction.ggng}&double_change=${prediction.double_change}&status_id=${prediction.status_id}`;
-
+    let body = `name=${data.name}&sign=${data.sign}&isActive=${data.isActive}`;
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
     });
 
-    return this.http.post(this.apiurl + 'post_sports/', body, { headers: httpHeaders });
+    return this.http.post(this.apiurl + 'post_sport', body, { headers: httpHeaders });
   }
 
   postNations(data) {
     // tslint:disable-next-line: max-line-length
-    let body = `id=${prediction.id}&$match_id=${prediction.id}&user_id=${prediction.user_id}&Match=${prediction.Match}&1x2=${prediction['1x2']}&1x2ht=${prediction['1x2ht']}&ou05=${prediction.ou05}&ou15=${prediction.ou15}&ou05ht=${prediction.ou05ht}&ou15ht=${prediction.ou15ht}&ggng=${prediction.ggng}&double_change=${prediction.double_change}&status_id=${prediction.status_id}`;
-
+    let body = `name=${data.name}&sign=${data.sign}&isActive=${data.isActive}`;
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
     });
 
-    return this.http.post(this.apiurl + 'post_nations/', body, { headers: httpHeaders });
+    return this.http.post(this.apiurl + 'post_nation', body, { headers: httpHeaders });
   }
 
 

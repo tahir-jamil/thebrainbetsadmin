@@ -50,9 +50,9 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-profile', component: UserProfileComponent },
     { path: 'matches', loadChildren: '../../matches/matches.module#MatchesModule' },
     { path: 'predictions', loadChildren: '../../predictions/predictions.module#PredictionsModule' },
-    { path: 'accounts', loadChildren: '../../accounts/accounts.module#AccountsModule' },
     // { path: 'typography', component: TypographyComponent },
     // { path: 'maps', component: MapsComponent },
     // { path: 'notifications', component: NotificationsComponent },
     // { path: 'upgrade', component: UpgradeComponent },
 ];
+

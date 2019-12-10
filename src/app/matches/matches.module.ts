@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatchesComponent } from './matches.component';
+import { AccountsComponent } from './accounts/accounts.component';
 import { MatchesRoutingModule } from './matches.routing';
 import { AgGridModule } from '@ag-grid-community/angular';
 import { ComponentsModule } from 'app/components/components.module';
@@ -17,15 +18,12 @@ import { FormsModule } from '@angular/forms';
     ComponentsModule,
     FormsModule,
     MatButtonModule,
-    MatRippleModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatTooltipModule,
     MatDialogModule
-
   ],
-  declarations: [MatchesComponent, AddNewMatchesComponent, ModelAddPridictionComponent],
+  declarations: [MatchesComponent, AddNewMatchesComponent, ModelAddPridictionComponent, AccountsComponent],
   entryComponents: [ModelAddPridictionComponent],
   exports: [ModelAddPridictionComponent]
 })
