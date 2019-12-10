@@ -111,17 +111,17 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    let data = this.dataService.getPredictionsData();
-    if (data && data.length !== 0) {
-      this.rowData = this.dataService.getPredictionsData()
-    } else {
-      this.fetchPredictions();
-    }
+
   }
 
 
   ngAfterViewInit(): void {
-
+    // let data = this.dataService.getPredictionsData();
+    // if (data && data.length !== 0) {
+    //   this.rowData = this.dataService.getPredictionsData()
+    // } else {
+      this.fetchPredictions();
+    // }
   }
 
   fetchPredictions() {
@@ -177,7 +177,9 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
 
   onSelectionChanged() {
     const selectedRows = this.gridApi.getSelectedRows();
-    this.openDialog(selectedRows[0])
+    let data = selectedRows[0];
+    data.updateBit = true;
+    this.openDialog(data)
   }
 
   openDialog(data): void {
@@ -189,6 +191,7 @@ export class PredictionsComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.fetchPredictions();
     });
   }
 

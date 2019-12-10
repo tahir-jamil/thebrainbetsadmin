@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AllCommunityModules, GridOptions } from '@ag-grid-community/all-modules';
 import * as XLSX from 'xlsx';
 import { HttpService } from 'app/services/http.service';
@@ -11,7 +11,7 @@ import { ModelAddPridictionComponent } from './modelAddPridiction/modelAddPridic
   templateUrl: './matches.component.html',
   styleUrls: ['./matches.component.css']
 })
-export class MatchesComponent implements OnInit {
+export class MatchesComponent implements OnInit, AfterViewInit {
 
   gridOptions: any = {};
   studentList = {};
@@ -36,7 +36,11 @@ export class MatchesComponent implements OnInit {
 
 
   ngOnInit() {
+  }
+  
+  ngAfterViewInit(): void {
     this.fetchMatches();
+
   }
 
   fetchMatches() {

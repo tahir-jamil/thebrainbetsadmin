@@ -4,24 +4,20 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Simple Table</h4>
-                        <p class="card-category"> Here is a subtitle for this table</p>
-                    </div>
                     <div class="card-body">
-
                         <div class="table-responsive">
                             <ag-grid-angular class="ag-theme-balham" [rowData]="rowData" [gridOptions]="gridOptions"
                              [modules]="modules"
                              [frameworkComponents]="frameworkComponents"
                              [domLayout]="domLayout" 
-                             editType="fullRow"
+                             
                              rowSelection = "single"
                             (selectionChanged)="onSelectionChanged($event)"
                              (cellValueChanged)="onCellValueChanged($event)"
                              (gridReady)="onGridReady($event)"
                              >
                           </ag-grid-angular>
+                          <!-- editType="fullRow" -->
                         </div>
                     </div>
                 </div>
