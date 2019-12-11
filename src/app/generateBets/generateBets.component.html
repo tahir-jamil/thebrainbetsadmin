@@ -1,3 +1,4 @@
+
 <div class="container-fluid" style="margin-top: 55px;">
   <div class="card">
     <div class="card-header card-header-danger">
@@ -45,14 +46,13 @@
         </div>
       </div>
       <div mat-dialog-actions>
-        <button class="btn btn-primary" (click)="createNewSport()">Generate</button>
+        <button class="btn btn-primary" (click)="generateResults()">Generate</button>
       </div>
     </div>
     <div class="table-responsive">
-      <ag-grid-angular class="ag-theme-balham" [rowData]="generateBets" [gridOptions]="generateBetsOptions"
-        [columnDefs]="columnDefs" [modules]="modules" [domLayout]="domLayout" (gridReady)="onGridReady($event)">
+      <ag-grid-angular class="ag-theme-balham" [rowData]="generateBets" [gridOptions]="generateBetsOptions" [modules]="modules" [domLayout]="domLayout" (gridReady)="onGridReady($event)">
       </ag-grid-angular>
     </div>
   </div>
 
-</div>
+</div> 

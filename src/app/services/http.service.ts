@@ -97,4 +97,15 @@ export class HttpService {
 
     return this.http.post(this.apiurl + 'post_matches', body, { headers: httpHeaders });
   }
+
+  search(filter) {
+    // tslint:disable-next-line: max-line-length
+    const body = `Champion=${filter.champions}&minQuote=${filter.minQuote}&maxQuote=${filter.maxQuotes}&numberOfMatches=${filter.numberOfMatches}&stack=${filter.stack}&kindOfPrediction=${filter.kindOfPrediction}`;
+
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+    });
+
+    return this.http.post(this.apiurl + 'search', body, { headers: httpHeaders });
+  }
 }
